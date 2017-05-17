@@ -22,6 +22,14 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana_data:/var/lib/grafana
+#      - ./environment:/etc/environment
+      - ./apt.conf:/etc/apt/apt.conf
+#    command: /etc/environment  (tiene que ser un .sh)
+    env_file:
+      - environment
+#    environment:
+#      - http_proxy=http://192.169.32.2:8000
+#      - https_proxy=https://192.169.32.2:8000
     depends_on:
       - prometheus
     ports:
